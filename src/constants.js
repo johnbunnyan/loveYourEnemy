@@ -1,13 +1,13 @@
 export const scaleFactor = 4;
 
 export const dialogueData = {
-  pc: `This is my PC. I work mostly in JavaScript/TypeScript these days.
-    I've made a couple of games in that language. I also like Golang and Python. Anyway regardless of the language, I just like programming.
-    Here is my <a href="https://github.com/jslegenddev" target="_blank">Github</a>!`,
+  pc: `이건 내 컴퓨터야. 난 내가 상상한 캐릭터와 플롯을 게임으로 만들려고 코딩을 공부했어. 내 깃헙 프로필을 가꿀거야.
+     <a href="https://github.com/johnbunnyan" target="_blank">Github</a>!`,
+  
   "cs-degree": `This is my CS degree. I hung it on the wall because I'm proud of it. It was a very theoretical degree but I think it gave me a good foundation.`,
-  "sofa-table": `That's my sofa. I like to relax here and watch YouTube. 
-  I also make game programming tutorials on YouTube. Go sub to <a href="https://youtube.com/@jslegenddev" target="_blank">my channel</a>! (If you like the content)
-  You'll learn how I built this portfolio you're currently playing through!`,
+  "sofa-table": `난 집에 있는 걸 좋아해. 앗, 난 플레이리스트 듣는 것도 좋아해서 직접 찍은 영상으로 플리도 만들었어. <a href="https://www.youtube.com/watch?v=h0GoqrTtVNw" target="_blank"></br>🔗플리 들으러 가기</a>
+  </br>(풍경 너무 예뻐!)`,
+
   tv: `That's my TV. I've been watching tech youtubers a lot recently like :
    <a href="https://www.youtube.com/@ThePrimeTimeagen" target="_blank">Theprimeagen</a>, <a href="https://www.youtube.com/@t3dotgg" target="_blank">Theo - t3.gg</a>,
   <a href="https://www.youtube.com/@PirateSoftware" target="_blank">PirateSoftware</a> (sometimes) and <a href="https://www.youtube.com/@MelkeyDev" target="_blank">Melkey</a>!`,

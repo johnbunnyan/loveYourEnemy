@@ -8,14 +8,20 @@
   </head>
   <body>
     <style>
-      @font-face {
+      /* 폰트를 url로 다운 받음 */
+      @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Song+Myung&display=swap');
+     
+      /* 위에거보다 좀더 유연
+      https://developer.mozilla.org/ko/docs/Web/CSS/@font-face
+       @font-face {
         font-family: monogram;
         src: url(monogram.ttf);
-      }
+      } */
 
       body {
-        font-family: monogram, monospace;
-        font-size: 2rem;
+        /* font-family: monogram, monospace; */
+        font-family: "Song Myung", serif;
+        font-size: 1.5rem;
         overflow: hidden;
       }
 
@@ -51,7 +57,8 @@
       }
 
       .ui-close-btn {
-        font-family: monogram, monospace;
+        /* font-family: monogram, monospace; */
+        font-family: "Song Myung", serif;
         border-style: none;
         border-radius: 3px;
         padding: 1rem;
