@@ -22,7 +22,7 @@ import { k } from "./kaboomCtx";
 import { displayDialogue, setCamScale } from "./utils";
 
 //SECTION 1. loadSprite
-// 스프라이트시트랑 맵 PNG들을 카ㅜ
+// 스프라이트시트랑 맵 PNG들 가져옴
 
 /* 초기값
 sliceX/Y - 종이를 가위로 자를 때 그 시작점
@@ -61,13 +61,22 @@ to x축 끝
   },
 });
 
+
+k.loadSound("music", "dist/LADY.mp3").then((music) =>{
+  k.play("music");
+});
 // 맵 사용법
 // loadSprite로 맵 png를 받는다
 k.loadSprite("map", "./map.png");
-
+k.loadSprite("new", "./new.png");
 
 // 맵 밖의 바탕화면 색 지정
 k.setBackground(k.Color.fromHex("#5ba675"));
+
+
+
+
+
 
 k.scene("main", async () => {
   const mapData = await (await fetch("./map.json")).json();
@@ -104,8 +113,16 @@ k.scene("main", async () => {
           boundary.name,
         ]);
 
+
         if (boundary.name) {
+
+      
           player.onCollide(boundary.name, () => {
+            if(boundary.name === 'exit'){
+              player.isInDialogue = false;
+               k.go("field");
+            }
+
             player.isInDialogue = true;
             displayDialogue(
               dialogueData[boundary.name],
@@ -142,51 +159,52 @@ k.scene("main", async () => {
     k.camPos(player.worldPos().x, player.worldPos().y - 100);
   });
 
-  k.onMouseDown((mouseBtn) => {
-    if (mouseBtn !== "left" || player.isInDialogue) return;
+  // 마우스 안쓸거
+  // k.onMouseDown((mouseBtn) => {
+  //   if (mouseBtn !== "left" || player.isInDialogue) return;
 
-    const worldMousePos = k.toWorld(k.mousePos());
-    player.moveTo(worldMousePos, player.speed);
+  //   const worldMousePos = k.toWorld(k.mousePos());
+  //   player.moveTo(worldMousePos, player.speed);
 
-    const mouseAngle = player.pos.angle(worldMousePos);
+  //   const mouseAngle = player.pos.angle(worldMousePos);
 
-    const lowerBound = 50;
-    const upperBound = 125;
+  //   const lowerBound = 50;
+  //   const upperBound = 125;
 
-    if (
-      mouseAngle > lowerBound &&
-      mouseAngle < upperBound &&
-      player.curAnim() !== "walk-up"
-    ) {
-      player.play("walk-up");
-      player.direction = "up";
-      return;
-    }
+  //   if (
+  //     mouseAngle > lowerBound &&
+  //     mouseAngle < upperBound &&
+  //     player.curAnim() !== "walk-up"
+  //   ) {
+  //     player.play("walk-up");
+  //     player.direction = "up";
+  //     return;
+  //   }
 
-    if (
-      mouseAngle < -lowerBound &&
-      mouseAngle > -upperBound &&
-      player.curAnim() !== "walk-down"
-    ) {
-      player.play("walk-down");
-      player.direction = "down";
-      return;
-    }
+  //   if (
+  //     mouseAngle < -lowerBound &&
+  //     mouseAngle > -upperBound &&
+  //     player.curAnim() !== "walk-down"
+  //   ) {
+  //     player.play("walk-down");
+  //     player.direction = "down";
+  //     return;
+  //   }
 
-    if (Math.abs(mouseAngle) > upperBound) {
-      player.flipX = false;
-      if (player.curAnim() !== "walk-side") player.play("walk-side");
-      player.direction = "right";
-      return;
-    }
+  //   if (Math.abs(mouseAngle) > upperBound) {
+  //     player.flipX = false;
+  //     if (player.curAnim() !== "walk-side") player.play("walk-side");
+  //     player.direction = "right";
+  //     return;
+  //   }
 
-    if (Math.abs(mouseAngle) < lowerBound) {
-      player.flipX = true;
-      if (player.curAnim() !== "walk-side") player.play("walk-side");
-      player.direction = "left";
-      return;
-    }
-  });
+  //   if (Math.abs(mouseAngle) < lowerBound) {
+  //     player.flipX = true;
+  //     if (player.curAnim() !== "walk-side") player.play("walk-side");
+  //     player.direction = "left";
+  //     return;
+  //   }
+  // });
 
   function stopAnims() {
     if (player.direction === "down") {
@@ -254,7 +272,27 @@ k.scene("main", async () => {
     }
   });
 
+player.collides
 
 });
 
-k.go("main");
+
+k.scene("field", async () => {
+  const FmapData = await (await fetch("./new.json")).json();
+
+  const layers = FmapData.layers;
+
+  const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
+//   k.add([
+//     k.text("Game Over"),
+// ])
+});
+// 여기서 파라미터로 넘긴 애들은 해당 파일 내에서 전역으로 'args'로 꺼내 쓸 수 있음
+// score 생기면 쓸 예정
+
+k.go("main", 
+// {
+//   level: (levelIndex + 1) % maps.length,
+//   score: scoreLabel.value
+// }
+);

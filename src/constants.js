@@ -8,16 +8,12 @@ export const dialogueData = {
   "sofa-table": `난 집에 있는 걸 좋아해. 앗, 난 플레이리스트 듣는 것도 좋아해서 직접 찍은 영상으로 플리도 만들었어. <a href="https://www.youtube.com/watch?v=h0GoqrTtVNw" target="_blank"></br>🔗플리 들으러 가기</a>
   </br>(풍경 너무 예뻐!)`,
 
-  tv: `That's my TV. I've been watching tech youtubers a lot recently like :
-   <a href="https://www.youtube.com/@ThePrimeTimeagen" target="_blank">Theprimeagen</a>, <a href="https://www.youtube.com/@t3dotgg" target="_blank">Theo - t3.gg</a>,
-  <a href="https://www.youtube.com/@PirateSoftware" target="_blank">PirateSoftware</a> (sometimes) and <a href="https://www.youtube.com/@MelkeyDev" target="_blank">Melkey</a>!`,
-  bed: `This where I sleep. Great ideas comes when I'm lying on my bed. When an idea strikes, I often have to write it down or else I won't be able to sleep because my mental energy is consumed by it.`,
-  resume: `This is my desk and on it is my resume. <a href="https://github.com/JSLegendDev/Resume/blob/main/JSLegend%20Resume-1.pdf" target="_blank">Check it out?</a>
-  Contact me at jslegend@protonmail.com if you have any interesting job opportunities!`,
-  projects: `Info about this portfolio : It's made with the Kaboom.js library which is a library for making games in JavaScript.
-  Text is rendered with HTML/CSS. So the textbox you're currently reading is not rendered within canvas. Learn more about how to use
-  Kaboom.js by watching some of my tutorials <a href="https://youtube.com/@jslegenddev" target="_blank">here</a>.`,
-  library: `There are a lot of programming books on my shelves. There is even one in French (I also speak French btw).
-  I probably only read one of them. Who else compulsively buys technical books without ever finishing them?`,
-  exit: `If you want to exit JSLegendDev's portfolio, just close the tab.`,
+  tv: `난 유튜브 보는 걸 좋아하는데, 요즘에는 좀 생산적인 걸 보고 싶어.
+   <a href="https://www.youtube.com/@ThePrimeTimeagen" target="_blank">유튜브</a>!`,
+  bed: `난 왜 침대에서 일어나지 않은 거지?`,
+  resume: `내 이력서. 난 내 과거를 마주할 줄 알아야 해. 난 개발자야. <a href="https://jasper-surgeon-c5f.notion.site/Back-end-25f5295402784dff815c50729337348c?pvs=4" target="_blank">확인해볼래?</a>
+  내 이메일은 이거야! jsk717543@gmail.com`,
+  projects: `난 뭘 하기 위해 태어났지? 그래, 난 게임으로 소설을 쓸 거야.<a href="https://youtube.com/@jslegenddev" target="_blank">here</a>.`,
+  library: `괴물, 이방인, 데미안, 노인과 바다, 돈키호테, 어린왕자, 그리고 성경. 내가 새로 쓸 이야기들.`,
+  exit: `맵추가하자`,
 };
