@@ -70,19 +70,20 @@ k.loadSound("music", "dist/LADY.mp3").then((music) =>{
 k.loadSprite("map", "./map.png");
 k.loadSprite("new", "./new.png");
 
+
+
 // 맵 밖의 바탕화면 색 지정
 k.setBackground(k.Color.fromHex("#5ba675"));
-
-
-
-
-
 
 k.scene("main", async () => {
   const mapData = await (await fetch("./map.json")).json();
   const layers = mapData.layers;
-
   const map = k.add([k.sprite("map"), k.pos(0), k.scale(scaleFactor)]);
+
+   // add를 쓰면 해당 파라미터의 스프라이트를 추가함
+  // 할당하는 것 자체만으로도 스프라이트 추가됨
+  
+
 
   const player = k.make([
     k.sprite("spritesheet", { anim: "idle-down" }),
@@ -101,6 +102,9 @@ k.scene("main", async () => {
     "player",
   ]);
 
+
+
+ 
   for (const layer of layers) {
     if (layer.name === "boundaries") {
       for (const boundary of layer.objects) {
@@ -122,6 +126,7 @@ k.scene("main", async () => {
               player.isInDialogue = false;
                k.go("field");
             }
+            
 
             player.isInDialogue = true;
             displayDialogue(
@@ -148,6 +153,11 @@ k.scene("main", async () => {
       }
     }
   }
+  k.add([
+    k.rect(k.width()-250, k.height()-200),
+    k.color(0, 0, 100),
+    k.pos(0, 10),
+  ]);
 
   setCamScale(k);
 
@@ -272,9 +282,9 @@ k.scene("main", async () => {
     }
   });
 
-player.collides
 
 });
+
 
 
 k.scene("field", async () => {

@@ -7,5 +7,6 @@ export const k = kaboom({
   global: false,
   touchToMouse: false,
   canvas: document.getElementById("game"),
-  debug: false, // set to false once ready for production
+  debug: false, // set to false once ready for production,
+  scrollPos: [0, 0], // 화면 스크롤을 고정
 });
