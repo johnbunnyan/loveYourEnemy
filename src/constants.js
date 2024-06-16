@@ -5,7 +5,7 @@ export const dialogueData = {
      <a href="https://github.com/johnbunnyan" target="_blank">Github</a>!`,
   
   "cs-degree": `This is my CS degree. I hung it on the wall because I'm proud of it. It was a very theoretical degree but I think it gave me a good foundation.`,
-  "sofa-table": `난 집에 있는 걸 좋아해. 앗, 난 플레이리스트 듣는 것도 좋아해서 직접 찍은 영상으로 플리도 만들었어. <a href="https://www.youtube.com/watch?v=h0GoqrTtVNw" target="_blank"></br>🔗플리 들으러 가기</a>
+  "sofa-table": `난 집에 있는 걸 좋아해. 앗, 난 플레이리스트 듣는 것도 좋아해서 직접 찍은 영상으로 플리도 만들었어. <a href="https://www.youtube.com/watch?v=EEXICjKLXRc&t=10792s" target="_blank"></br>🔗플리 들으러 가기</a>
   </br>(풍경 너무 예뻐!)`,
 
   tv: `난 유튜브 보는 걸 좋아하는데, 요즘에는 좀 생산적인 걸 보고 싶어.
