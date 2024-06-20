@@ -73,16 +73,33 @@
       .note {
         position: absolute;
         left: 5%;
-        top: 1vh;
+        top: 5vh;
         display: flex;
         flex-direction: column;
         color: rgb(238, 238, 238);
       }
+      .title {
+        position: absolute;
+        left: 5%;
+        top: 1vh;
+        display: flex;
+        flex-direction: column;
+        color: rgb(228, 245, 43);
+      }
+      .music {
+        position: absolute;
+        left: 5%;
+        top: 1vh;
+        display: flex;
+        flex-direction: column;
+        color: rgb(0, 0, 0);
+      }
     </style>
     <div id="app">
       <div>
+        <p class="title">Title : Love Your Enemy</p>
         <p class="note">Tap/Click around to move</p>
-
+        <button class="music">음악재생 🎵</button>
         <div id="textbox-container" style="display: none">
           <div id="textbox">
             <p id="dialogue" class="ui-text"></p>
