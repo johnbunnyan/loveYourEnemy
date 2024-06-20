@@ -16,6 +16,27 @@
 
  */
 
+//  const canvas = document.getElementById('app')
+//  k({canvas})
+// const touchEndActions = [];
+// canvas.addEventListener('touchend', (e)=>{
+//   [...e.changedTouches].forEach((t)=>{
+//     touchEndActions.forEach((action)=>{
+//       action(t.identifier, vec2(t.clientX,t.clientY).scale(1/app.scale))
+//     })
+//   })
+// })
+
+// function onTouchEnd(action) {
+//   touchEndActions.push(action)
+//   return()=>{
+//     const idx = touchEndActions.findIndex(a=>a ===action)
+//     if(idx >= 0){
+//       touchEndActions.splice(idx,1);
+//     }
+//   }
+// }
+
 
 import { dialogueData, scaleFactor } from "./constants";
 import { k } from "./kaboomCtx";
@@ -48,6 +69,9 @@ to x축 끝
 
 // FIXME anims의 from의 값 기준이 뭔지???
 
+
+// k.debug.inspect =true
+
   k.loadSprite("spritesheet", "./spritesheet.png", {
   sliceX: 39,
   sliceY: 33.6,
@@ -70,7 +94,10 @@ k.loadSound("music", "dist/LADY.mp3").then((music) =>{
 k.loadSprite("map", "./map.png");
 k.loadSprite("new", "./new.png");
 
-
+k.loadSprite("left", "./arrow_left_light.png");
+k.loadSprite("right", "./arrow_right_light.png");
+k.loadSprite("up", "./arrow_up_light.png");
+k.loadSprite("down", "./arrow_down_light.png");
 
 // 맵 밖의 바탕화면 색 지정
 k.setBackground(k.Color.fromHex("#5ba675"));
@@ -99,10 +126,49 @@ k.scene("main", async () => {
       direction: "down",
       isInDialogue: false,
     },
-    "player",
+  "player"
   ]);
 
-
+  const leftButton = k.add([
+    k.sprite('left'),
+    //50,560
+    k.pos(50, 560),
+    k.opacity(0.5),
+    k.scale(1.5,1.5),
+    k.fixed(),
+    k.area(),
+    "leftButton"
+  ]);
+  
+  const rightButton = k.add([
+    k.sprite('right'),
+    k.pos(150, 560),
+    k.opacity(0.5),
+    k.scale(1.5,1.5),
+    k.fixed(),
+    k.area(),
+    "rightButton"
+  ]);
+  
+  const upButton = k.add([
+    k.sprite('up'),
+    k.pos(100, 510),
+    k.opacity(0.5),
+    k.scale(1.5,1.5),
+    k.fixed(),
+    k.area(),
+    "upButton"
+  ]);
+  
+  const downButton = k.add([
+    k.sprite('down'),
+    k.pos(100, 610),
+    k.opacity(0.5),
+    k.scale(1.5,1.5),
+    k.fixed(),
+    k.area(),
+    "downButton"
+  ]);
 
  
   for (const layer of layers) {
@@ -169,8 +235,209 @@ k.scene("main", async () => {
     k.camPos(player.worldPos().x, player.worldPos().y - 100);
   });
 
-  // 마우스 안쓸거
+
+
+
+const keyDown = {
+left:false,
+right:false,
+up:false,
+down:false
+};
+
+
+
+const moveLeft = () => {
+  
+  player.move(-player.speed, 0);
+}
+const moveRight = () => {
+  player.move(player.speed, 0);
+}
+const moveUp = () => {
+ 
+  player.move(0, -player.speed);
+}
+
+const moveDown = () => {
+  player.move(0, player.speed);
+}
+
+k.onKeyDown('left', () => {
+  keyDown.left =true
+  player.flipX = true;
+  if (player.curAnim() !== "walk-side") player.play("walk-side");
+  player.direction = "left";
+})
+
+k.onKeyRelease('left', () => {
+  keyDown.left = false
+})
+
+k.onKeyDown('right', () => {
+  keyDown.right =true
+  player.flipX = false;
+  if (player.curAnim() !== "walk-side") player.play("walk-side");
+  player.direction = "right";
+})
+
+k.onKeyRelease('right', () => {
+  keyDown.right = false
+})
+
+k.onKeyDown('up', () => {
+  keyDown.up =true
+  if (player.curAnim() !== "walk-up") player.play("walk-up");
+    player.direction = "up";
+})
+
+k.onKeyRelease('up', () => {
+  keyDown.up = false
+})
+
+
+k.onKeyDown('down', () => {
+  keyDown.down =true
+  if (player.curAnim() !== "walk-down") player.play("walk-down");
+  player.direction = "down";
+})
+
+k.onKeyRelease('down', () => {
+  keyDown.down = false
+})
+
+
+k.onUpdate(()=>{
+  if(keyDown.left){
+    moveLeft()
+  }
+  else if(keyDown.right){
+    moveRight()
+  }
+  else if(keyDown.up){
+    moveUp()
+  }
+  else if(keyDown.down){
+    moveDown()
+  }
+})
+
+
+k.onTouchStart((id,pos) => {
+ 
+const buttonMap = [
+  rightButton.hasPoint({x:pos.clientX,y:pos.clientY}),
+  leftButton.hasPoint({x:pos.clientX,y:pos.clientY}),
+  upButton.hasPoint({x:pos.clientX,y:pos.clientY}),
+  downButton.hasPoint({x:pos.clientX,y:pos.clientY})
+
+]
+
+// k.onUpdate(()=>{
+  if (buttonMap[0]) {
+    rightButton.opacity = 1;
+    keyDown.right = true;
+
+    player.flipX = false;
+    if (player.curAnim() !== "walk-side") player.play("walk-side");
+    player.direction = "right";
+    player.move(player.speed, 0);
+    return;
+   
+  }
+
+  else if (buttonMap[1]) {
+    leftButton.opacity = 1;
+    keyDown.left = true;
+
+    player.flipX = true;
+    if (player.curAnim() !== "walk-side") player.play("walk-side");
+    player.direction = "left";
+    player.move(-player.speed, 0);
+    return;
+  }
+
+  else if (buttonMap[2]) {
+    upButton.opacity = 1;
+    keyDown.up = true;
+
+    if (player.curAnim() !== "walk-up") player.play("walk-up");
+    player.direction = "up";
+    player.move(0, -player.speed);
+    return;
+  }
+
+  else if (buttonMap[3]) {
+    downButton.opacity = 1;
+    keyDown.down = true;
+
+    if (player.curAnim() !== "walk-down") player.play("walk-down");
+    player.direction = "down";
+    player.move(0, player.speed);
+    return;
+  }
+  
+})
+
+// onUpdate(()=>{
+//   if(keyDown.left){
+//     moveLeft();
+//   }
+//   else if(keyDown.right){
+//     moveRight();
+//   }
+//   else if(keyDown.right){
+//     moveUp();
+//   }
+//   else if(keyDown.right){
+//     moveDown();
+//   }
+// })
+
+const onTouchChanged = (_,pos)=>{
+ 
+    if(leftButton.hasPoint({x:pos.clientX,y:pos.clientY})){
+      keyDown.left = false
+      leftButton.opacity = 0.5
+    }
+    
+    else if(rightButton.hasPoint({x:pos.clientX,y:pos.clientY})){
+      keyDown.right = false
+      rightButton.opacity = 0.5
+    }
+   
+    else if(upButton.hasPoint({x:pos.clientX,y:pos.clientY})){
+      keyDown.up = false
+      upButton.opacity = 0.5
+    }
+    else if(downButton.hasPoint({x:pos.clientX,y:pos.clientY})){
+      keyDown.down = false
+      downButton.opacity = 0.5
+    }
+    stopAnims();
+   
+}
+
+
+
+
+
+
+k.onTouchMove(onTouchChanged)
+k.onTouchEnd(onTouchChanged)
+
+
+
+
+
+
+
+
+
+
+  // 화면에 클릭하면 해당 방향으로 Player를 이동시켜주는 기능
   k.onMouseDown((mouseBtn) => {
+    //mouseBtn -> 왼쪽 클릭/오른쪽 클릭/마우스휠 등
     if (mouseBtn !== "left" || player.isInDialogue) return;
 
     const worldMousePos = k.toWorld(k.mousePos());
@@ -234,12 +501,17 @@ k.scene("main", async () => {
   k.onKeyRelease(() => {
     stopAnims();
   });
+
+
+   // 해당 키 방향대로 player를 이동시켜주는 기능
   k.onKeyDown((key) => {
+
+    //isKeyDown으로 키보드의 입력 정보를 받음
     const keyMap = [
-      k.isKeyDown("right"),
-      k.isKeyDown("left"),
-      k.isKeyDown("up"),
-      k.isKeyDown("down"),
+      k.isKeyDown("d"),
+      k.isKeyDown("a"),
+      k.isKeyDown("w"),
+      k.isKeyDown("s"),
     ];
 
     let nbOfKeyPressed = 0;
@@ -248,10 +520,10 @@ k.scene("main", async () => {
         nbOfKeyPressed++;
       }
     }
-
     if (nbOfKeyPressed > 1) return;
-
     if (player.isInDialogue) return;
+
+    // //각 입력별 분기에 따라 player 처리
     if (keyMap[0]) {
       player.flipX = false;
       if (player.curAnim() !== "walk-side") player.play("walk-side");
