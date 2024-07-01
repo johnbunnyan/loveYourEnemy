@@ -107,48 +107,44 @@ onKeyRelease('down', () => {
 
 }
 
-
-function leftButtonCreate(){
-  return add([
-    sprite('left'),
-    //50,560
-    pos(50, 560),
-    opacity(0.5),
-    scale(1.5,1.5),
+function createButton(){
+  const ui = add([
     fixed(),
-    area(),
-    "leftButton"
-  ]);
-}
+    z(100),
+]);
 
-function rightButtonCreate(){
-  return add([
-    sprite('right'),
-    pos(150, 560),
-    opacity(0.5),
-    scale(1.5,1.5),
-    fixed(),
-    area(),
-    "rightButton"
-  ]);
-}
+  const leftButton = ui.add([
+  sprite('left'),
+  //50,560
+  pos(50, 560),
+  opacity(0.5),
+  scale(1.5,1.5),
+  fixed(),
+  area(),
+  "leftButton"
+]);
 
+const rightButton = ui.add([
+  sprite('right'),
+  pos(150, 560),
+  opacity(0.5),
+  scale(1.5,1.5),
+  fixed(),
+  area(),
+  "rightButton"
+]);
 
-function upButtonCreate(){
-  return add([
-    sprite('up'),
-    pos(100, 510),
-    opacity(0.5),
-    scale(1.5,1.5),
-    fixed(),
-    area(),
-    "upButton"
-  ]);
-}
+const upButton = ui.add([
+  sprite('up'),
+  pos(100, 510),
+  opacity(0.5),
+  scale(1.5,1.5),
+  fixed(),
+  area(),
+  "upButton"
+]);
 
-
-function downButtonCreate(){
-  return add([
+const downButton = ui.add([
     sprite('down'),
     pos(100, 610),
     opacity(0.5),
@@ -157,7 +153,59 @@ function downButtonCreate(){
     area(),
     "downButton"
   ]);
-}
+  return {leftButton,rightButton,downButton,upButton};
+};
+
+// function leftButtonCreate(){
+//   return add([
+//     sprite('left'),
+//     //50,560
+//     pos(50, 560),
+//     opacity(0.5),
+//     scale(1.5,1.5),
+//     fixed(),
+//     area(),
+//     "leftButton"
+//   ]);
+// }
+
+// function rightButtonCreate(){
+//   return add([
+//     sprite('right'),
+//     pos(150, 560),
+//     opacity(0.5),
+//     scale(1.5,1.5),
+//     fixed(),
+//     area(),
+//     "rightButton"
+//   ]);
+// }
+
+
+// function upButtonCreate(){
+//   return add([
+//     sprite('up'),
+//     pos(100, 510),
+//     opacity(0.5),
+//     scale(1.5,1.5),
+//     fixed(),
+//     area(),
+//     "upButton"
+//   ]);
+// }
+
+
+// function downButtonCreate(){
+//   return add([
+//     sprite('down'),
+//     pos(100, 610),
+//     opacity(0.5),
+//     scale(1.5,1.5),
+//     fixed(),
+//     area(),
+//     "downButton"
+//   ]);
+// }
 
 
 function moveAction(keyDown,player){
@@ -331,12 +379,13 @@ function onMouseDownFn(player){
 
   export { moveKeyRegacy,
     moveKey, 
-    leftButtonCreate, 
-    rightButtonCreate,
-     upButtonCreate, 
-     downButtonCreate,
+    // leftButtonCreate, 
+    // rightButtonCreate,
+    //  upButtonCreate, 
+    //  downButtonCreate,
      moveAction,
      onTouchStartFn,
      touchEnd,
      onMouseDownFn,
+     createButton,
     }

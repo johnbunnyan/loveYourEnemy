@@ -5,10 +5,10 @@ import { displayDialogue, setCamScale } from "./utils";
 import { 
     moveKeyRegacy,
     moveKey,
-    leftButtonCreate,
-    rightButtonCreate,
-    upButtonCreate,
-    downButtonCreate,
+    // leftButtonCreate,
+    // rightButtonCreate,
+    // upButtonCreate,
+    // downButtonCreate,
     moveAction,
     onTouchStartFn,
     touchEnd,
@@ -16,8 +16,6 @@ import {
     
    } from './moveController.js'
   import  { slimePlayer,stopAnims}  from './player';
-
-kaplay(config);
 
 
 
@@ -36,6 +34,7 @@ kaplay(config);
           "walk-up": { from: 975, to: 976, loop: true, speed: 8 },
         },
       });
+
 
    
 

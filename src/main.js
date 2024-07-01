@@ -9,14 +9,15 @@ import { greenField }  from './greenField.js';
 import { 
   moveKeyRegacy,
   moveKey,
-  leftButtonCreate,
-  rightButtonCreate,
-  upButtonCreate,
-  downButtonCreate,
+  // leftButtonCreate,
+  // rightButtonCreate,
+  // upButtonCreate,
+  // downButtonCreate,
   moveAction,
   onTouchStartFn,
   touchEnd,
   onMouseDownFn,
+  createButton,
   
  } from './moveController.js'
 import  { slimePlayer,stopAnims}  from './player';
@@ -45,9 +46,7 @@ kaplay(config);
 
 
 
-// 맵 사용법
-// loadSprite로 png를 받는다
-loadSprite("map", "./map.png");
+
 
 loadSprite("left", "./arrow_left_light.png");
 loadSprite("right", "./arrow_right_light.png");
@@ -81,25 +80,20 @@ const keyDown = {
   up:false,
   down:false
   };
-let player = slimePlayer();
 
 
-scene("main", async () => {
 
+scene("main", async ({level,score}) => {
+  const player = slimePlayer();
   setBackground(Color.fromHex("#5ba675"));
 
-  const mapData = await (await fetch("./map.json")).json();
-  const layers = mapData.layers;
-  const map = add([sprite("map"), pos(0), scale(scaleFactor)]);
   
 
 
    
 // ui
-  const leftButton = leftButtonCreate();
-  const rightButton = rightButtonCreate();
-  const upButton = upButtonCreate();
-  const downButton =downButtonCreate();
+const {leftButton,rightButton,downButton,upButton} = createButton();
+
 
   // move setting  
 // 1. 터치
@@ -122,6 +116,25 @@ onKeyRelease(() => {
 
 
   // map
+
+  let layers;
+  let map;
+
+  if(level === 0){
+    loadSprite("map", "./map.png");
+    const mapData = await (await fetch("./map.json")).json();
+    layers = mapData.layers;
+     map = add([sprite("map"), pos(0),scale(scaleFactor)]);
+
+  }
+  else if(level === 1){
+    loadSprite("greenMap", "./green/green.png");
+    const GreenMapData = await (await fetch("./green/green.json")).json();
+    layers  = GreenMapData.layers;
+    map = add([sprite("greenMap"), pos(0), scale(scaleFactor)]);
+  }
+  
+ 
   for (const layer of layers) {
     if (layer.name === "boundaries") {
       for (const boundary of layer.objects) {
@@ -141,7 +154,11 @@ onKeyRelease(() => {
           player.onCollide(boundary.name, () => {
             if(boundary.name === 'exit'){
               player.isInDialogue = false;
-               go("field",{level:0,score:0});
+              green();
+            }
+            else if(boundary.name === 'home'){
+              player.isInDialogue = false;
+              home();
             }
             else{
               player.isInDialogue = true;
@@ -166,7 +183,7 @@ onKeyRelease(() => {
             (map.pos.x + entity.x) * scaleFactor,
             (map.pos.y + entity.y) * scaleFactor
           );
-          console.log(player.pos)
+          console.log(player)
           add(player);
           continue;
         }
@@ -194,14 +211,28 @@ onKeyRelease(() => {
   
 });
 
-greenField();
+//greenField();
 
-go("main", 
-// {
-//   level: (levelIndex + 1) % maps.length,
-//   score: scoreLabel.value
-// }
-);
+function green(){
+  go("main", 
+    {
+      // level: (levelIndex + 1) % maps.length,
+      // score: scoreLabel.value
+      level:1,
+      score: 1
+    }
+    );
+}
+function home(){
+  go("main", 
+    {
+      // level: (levelIndex + 1) % maps.length,
+      // score: scoreLabel.value
+      level:0,
+      score: 1
+    }
+    );
+};
 
+home();
 
-export default player;
