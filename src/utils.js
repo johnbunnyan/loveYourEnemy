@@ -37,11 +37,11 @@ export function displayDialogue(text, onDisplayEnd) {
   });
 }
 
-export function setCamScale(k) {
-  const resizeFactor = k.width() / k.height();
+export function setCamScale() {
+  const resizeFactor = width() / height();
   if (resizeFactor < 1) {
-    k.camScale(k.vec2(1));
+    camScale(vec2(1));
   } else {
-    k.camScale(k.vec2(1.5));
+    camScale(vec2(1.5));
   }
 }
