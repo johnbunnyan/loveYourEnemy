@@ -7,7 +7,7 @@ import { stopAnims } from "./player";
 function moveKeyRegacy(e){
   
     //isKeyDown으로 키보드의 입력 정보를 받음
-console.log(e)
+
     const keyMap = [
       isKeyDown("right"),
       isKeyDown("left"),
@@ -27,7 +27,7 @@ console.log(e)
     // //각 입력별 분기에 따라 player 처리
     if (keyMap[0]) {
       player.flipX = false;
-      console.log(player)
+    
       if (player.curAnim() !== "walk-side") player.play("walk-side");
       player.direction = "right";
       player.move(player.speed, 0);
@@ -36,7 +36,7 @@ console.log(e)
 
     if (keyMap[1]) {
       player.flipX = true;
-      console.log(player)
+
       if (player.curAnim() !== "walk-side") player.play("walk-side");
       player.direction = "left";
       player.move(-player.speed, 0);
@@ -44,7 +44,7 @@ console.log(e)
     }
 
     if (keyMap[2]) {
-        console.log(player)
+     
       if (player.curAnim() !== "walk-up") player.play("walk-up");
       player.direction = "up";
       player.move(0, -player.speed);
@@ -52,7 +52,7 @@ console.log(e)
     }
 
     if (keyMap[3]) {
-        console.log(player)
+
       if (player.curAnim() !== "walk-down") player.play("walk-down");
       player.direction = "down";
       player.move(0, player.speed);
@@ -62,7 +62,7 @@ console.log(e)
 function moveKey(keyDown,player) {    
     
 onKeyDown('left', () => {
-    console.log('www')
+
   keyDown.left =true
   player.flipX = true;
   if (player.curAnim() !== "walk-side") player.play("walk-side");

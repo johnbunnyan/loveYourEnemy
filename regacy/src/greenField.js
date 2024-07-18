@@ -1,7 +1,7 @@
-import config from "./kaboomCtx";
+import config from "./kaboomCtx.js";
 import kaplay from 'kaplay';
-import { dialogueData, scaleFactor } from "./constants";
-import { displayDialogue, setCamScale } from "./utils";
+import { dialogueData, scaleFactor } from "./constants.js";
+import { displayDialogue, setCamScale } from "./utils.js";
 import { 
     moveKeyRegacy,
     moveKey,
@@ -15,7 +15,7 @@ import {
     onMouseDownFn,
     
    } from './moveController.js'
-  import  { slimePlayer,stopAnims}  from './player';
+  import  { slimePlayer,stopAnims}  from './player.js';
 
 
 
