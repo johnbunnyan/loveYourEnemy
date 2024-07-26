@@ -20,7 +20,7 @@ export default async function house(k) {
   colorizeBackground(k, 27, 29, 52);
 
   const mapData = await fetchMapData("./assets/maps/house.json");
-  const map = k.add([k.pos(520, 200)]);
+  const map = k.add([k.pos(410, 200)]);
 
   const entities = {
     oldman: null,

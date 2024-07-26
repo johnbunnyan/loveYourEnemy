@@ -25,7 +25,7 @@ import {
 export default async function dungeon(k) {
   colorizeBackground(k, 27, 29, 52);
   const mapData = await fetchMapData("./assets/maps/dungeon.json");
-  const map = k.add([k.pos(420, 95)]);
+  const map = k.add([k.pos(320, 95)]);
 
   const entities = {
     player: null,

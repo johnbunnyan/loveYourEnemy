@@ -11,9 +11,17 @@ const french = {
   playIndication: "Pesez sur la touche Entrer pour commencer le jeu",
 };
 
+const korean = {
+  title: "자바스크립트의 모험",
+  languageIndication:
+    "언어를 바꾸려면 F버튼을 누르세요",
+  playIndication: "엔터를 눌러 모험을 시작해요⚔️",
+};
+
 const menuText = {
   english,
   french,
+  korean
 };
 
 export default menuText;
