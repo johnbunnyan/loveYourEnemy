@@ -2,6 +2,7 @@ import { playerState } from "../state/stateManagers.js";
 
 export function healthBar(k) {
   let nbFullHearts = Math.floor(playerState.getHealth());
+
   let addHalfHeart = false;
 
   if (playerState.getHealth() - nbFullHearts === 0.5) {
@@ -10,6 +11,7 @@ export function healthBar(k) {
 
   let nbEmptyHearts =
     playerState.getMaxHealth() - nbFullHearts - (addHalfHeart ? 1 : 0);
+
 
   const heartsContainer = k.add([k.pos(20, 20), k.fixed(), "healthContainer"]);
 

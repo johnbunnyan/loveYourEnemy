@@ -1,11 +1,16 @@
 import { healthBar } from "../uiComponents/healthbar.js";
+import { expBar } from "../uiComponents/expbar.js";
 import {
   generatePlayerComponents,
   setPlayerControls,
   watchPlayerHealth,
 } from "../entities/player.js";
 import { generateSlimeComponents, setSlimeAI } from "../entities/slime.js";
-import { gameState } from "../state/stateManagers.js";
+import { 
+  gameState,
+  playerState
+
+ } from "../state/stateManagers.js";
 import {
   colorizeBackground,
   drawTiles,
@@ -14,6 +19,7 @@ import {
   onAttacked,
   onCollideWithPlayer,
 } from "../utils.js";
+
 
 export default async function world(k) {
   const previousScene = gameState.getPreviousScene();
@@ -89,5 +95,6 @@ export default async function world(k) {
   }
 
   healthBar(k);
+  expBar(k).expPoint.text = playerState.getExp();
   watchPlayerHealth(k);
 }

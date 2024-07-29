@@ -8,7 +8,7 @@ export default function mainMenu(k) {
   const locales = ["english", "french", "korean"];
 
   const currentLocale = gameState.getLocale();
-console.log(currentLocale)
+
 
   colorizeBackground(k, 0, 0, 0);
 
@@ -39,7 +39,7 @@ console.log(currentLocale)
     k.pos(k.center().x, k.center().y + 200),
   ]);
 
-  k.onKeyPress("f" || 'ㄹ', () => {
+  k.onKeyPress("f", () => {
     myLocale += 1;
     myLocale = myLocale % 3;
     gameState.setLocale(locales[myLocale]);

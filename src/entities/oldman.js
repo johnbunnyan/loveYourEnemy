@@ -31,6 +31,7 @@ export async function startInteraction(k, oldman, player) {
     playAnimIfNotPlaying(oldman, "oldman-up");
   }
 
+console.log(gameState.getLocale())
   const responses = oldmanLines[gameState.getLocale()];
 
   playerState.setIsSwordEquipped(true);

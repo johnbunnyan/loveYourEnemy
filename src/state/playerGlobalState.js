@@ -6,6 +6,7 @@ export default function playerGlobalStateManager() {
     const maxHealth = 3;
     let health = maxHealth;
     let hasKey = false;
+    let exp = 0;
 
     return {
       setIsSwordEquipped(value) {
@@ -21,6 +22,10 @@ export default function playerGlobalStateManager() {
         hasKey = value;
       },
       getHasKey: () => hasKey,
+      getExp: () => exp,
+      setExp(value) {
+        exp = value;
+      },
     };
   }
 

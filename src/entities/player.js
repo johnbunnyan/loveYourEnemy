@@ -34,6 +34,7 @@ export function setPlayerControls(k, player) {
   k.onKeyDown((key) => {
     if (gameState.getFreezePlayer()) return;
     if (k.isKeyDown("space")) return;
+    
     if (["left"].includes(key)) {
       if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
       player.flipX = true;

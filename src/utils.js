@@ -1,5 +1,6 @@
 import { playerState } from "./state/stateManagers.js";
 import { healthBar } from "./uiComponents/healthbar.js";
+import { expBar } from "./uiComponents/expbar.js";
 
 export function playAnimIfNotPlaying(gameObj, animName) {
   if (gameObj.curAnim() !== animName) {
@@ -89,14 +90,21 @@ export async function blinkEffect(k, entity) {
   );
 }
 
+// 몬스터가 공격 당할 때 로직
 export function onAttacked(k, entity) {
   entity.onCollide("swordHitBox", async () => {
     if (entity.isAttacking) return;
 
     if (entity.hp() <= 0) {
       k.destroy(entity);
+
+      playerState.setExp(playerState.getExp() + 1);
+      k.destroyAll("expPoint");
+
+      expBar(k).expPoint.text = playerState.getExp();
     }
 
+   
     await blinkEffect(k, entity);
     entity.hurt(1);
   });
